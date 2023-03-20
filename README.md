@@ -11,6 +11,7 @@ Opgaverne omfatter primært:
 
 
 Krav til kompetencer:
+
 ● C#, .NET, MS SQL og data modellering
 
 ● Integration af diverse API (eks. REST og SOAP)
