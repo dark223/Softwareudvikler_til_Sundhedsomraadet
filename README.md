@@ -2,11 +2,12 @@
 Kodetest for Region Nordjylland til at teste, om kandidaten opfylder disse krav og kompetencer, som kandidaten ville skulle arbejde med i jobbet:
 
 Opgaverne omfatter primært:
+
 ● Udvikling og design af digitale løsninger til brugerne af it-systemerne på hospitalerne samt til regionens borgere. Fra ide til et færdigt produkt.
 
 ● Arbejde med diverse teknologier på forskellige modenhedsniveauer: mobilapplikationer, webapplikationer, automatiseringer m.m.
 
-● Udvikling og vedligehold af digitale løsninger i samarbejde med den interne DriftForvaltning- og Supportorganisation, som omfatter både nye og eksisterende systemer i et komplekst systemlandskab
+● Udvikling og vedligehold af digitale løsninger i samarbejde med den interne DriftForvaltning- og Supportorganisation, som omfatter både nye og eksisterende systemer i et komplekst systemlandskab
 
 
 Krav til kompetencer:
