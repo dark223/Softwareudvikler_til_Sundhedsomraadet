@@ -67,19 +67,23 @@ namespace PalindromeChallenge
             catch (RankException e)
             {
                 SimpleLogger.Log(e);
+                throw;
             }
             catch (ArgumentNullException e)
             {
                 SimpleLogger.Log(e);
+                throw;
             }
             catch (ArgumentOutOfRangeException e)
             {
                 SimpleLogger.Log(e);
+                throw;
 
             }
             catch (ArgumentException e)
             {
                 SimpleLogger.Log(e);
+                throw;
 
             }
             catch (Exception e)
@@ -87,7 +91,7 @@ namespace PalindromeChallenge
                 SimpleLogger.Log(e);
                 throw;
             }
-            return false;
+          
 
         }
 
