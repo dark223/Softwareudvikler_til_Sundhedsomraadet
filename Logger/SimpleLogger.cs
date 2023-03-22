@@ -3,6 +3,12 @@ using System.Text;
 
 namespace Logger
 {
+    /// <summary>
+    /// A simple logger that will either create a file or write to an exsisting file named log.txt in the project folder of the running project
+    /// e.g PalindromeChallenge\bin
+    /// In this file it will write the time, source, message and stacktrace of the exception
+    /// or write a text specified by the user.
+    /// </summary>
     public static class SimpleLogger
     {
 
@@ -59,7 +65,7 @@ namespace Logger
                 }
                 else
                 {
-                    File.Create(projectDirectory + "log.txt");
+                    File.Create(projectDirectory + "/log.txt");
                     await File.AppendAllTextAsync(projectDirectory + "/log.txt", sb.ToString());
                 }
 
