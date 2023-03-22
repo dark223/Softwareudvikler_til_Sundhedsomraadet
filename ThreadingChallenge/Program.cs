@@ -1,5 +1,6 @@
 ﻿using Logger;
 using Microsoft.VisualBasic;
+using System;
 using System.Runtime.CompilerServices;
 
 namespace ThreadingChallenge
@@ -15,10 +16,10 @@ namespace ThreadingChallenge
     internal class Program
     {
 
-        private static SemaphoreSlim semaphore;
+        private static SemaphoreSlim Semaphore;
         public static void Main()
         {
-            List<string> itemlistsize20 =  new List<string>{ "item 1", "item 2", "item 3", "item 4", "item 5", "item 6",
+            List<string> ItemList =  new List<string>{ "item 1", "item 2", "item 3", "item 4", "item 5", "item 6",
                                                             "item 7", "item 8", "item 9", "item 10", "item 11", "item 12", 
                                                             "item 13", "item 14", "item 15", "item 16", "item 17", "item 18",
                                                             "item 19", "item 20" };
@@ -27,22 +28,36 @@ namespace ThreadingChallenge
                 
                 // Creates the semaphore and starts with 3 open spots for threads to enter.
                 // it has a maximum of 3 spots.
-                semaphore = new SemaphoreSlim(3, 3);
+                Semaphore = new SemaphoreSlim(3, 3);
 
-                List<string> ProcessNow= new List<string>();
-                int processingamount = (itemlistsize20.Count)/5;
-         
-
-                for (int i = 0; i <= 4; i++)
+                // I create a list to store all created tasks so we later can find them
+                //Then i create a task for each of the strings in the itemlist
+                //and then process them using the worker method
+                List<Task> tasks = new List<Task>();
+                foreach (var item in ItemList)
                 {
-                // creates 5 threads each with a subset of the itemlistsize20 list
-                // each thread is started with a method used to process the list
-                ProcessNow = itemlistsize20.GetRange(0, processingamount);
-                itemlistsize20.RemoveRange(0, processingamount);
-            
-                Thread thread = new Thread(new ParameterizedThreadStart(WorkerThread));
-                    thread.Start(ProcessNow);
+                    tasks.Add(Task.Run(() =>
+                    {
+                        Worker(item);
+                    }));
                 }
+                // Waits for all tasks to be completed
+                // ends the program delcaring that all tasks have completed their job
+                Task.WaitAll(tasks.ToArray());
+                Console.WriteLine("all tasks have completed");
+
+
+
+            }
+            catch (AggregateException e)
+            {
+                SimpleLogger.Log(e);
+                throw;
+            }
+            catch (ObjectDisposedException e)
+            {
+                SimpleLogger.Log(e);
+                throw;
             }
             catch (InvalidOperationException e)
             {
@@ -79,21 +94,19 @@ namespace ThreadingChallenge
 
 
 
-        static void WorkerThread(object list)
+        static void Worker(string item)
         {
 
             // blocks current thread from entering semaphore until another thread has released it
-            semaphore.Wait();
+            Semaphore.Wait();
             try
             {
-                
+                Console.WriteLine($"thread with id {Thread.CurrentThread.ManagedThreadId} has entered the semaphore");
                 Random random = new Random();
-                int ProcessingTime = random.Next(1, 6) * 1000;
-                foreach (var item in (List<string>)list)
-                {
-                    Console.WriteLine(item +$" processing time was: {ProcessingTime} and thread used had id: {Thread.CurrentThread.ManagedThreadId}" );
-                }
-                
+                int ProcessingTime = random.Next(1000, 5001);
+
+                Console.WriteLine(item + $" processing time was: {ProcessingTime} and thread id was: {Thread.CurrentThread.ManagedThreadId}");
+ 
                 Thread.Sleep(ProcessingTime);
 
             }
@@ -121,7 +134,8 @@ namespace ThreadingChallenge
             finally
             {
                 // releases semaphore, this makes space for another thread 
-                semaphore.Release();
+                Semaphore.Release();
+                Console.WriteLine($"thread with id {Thread.CurrentThread.ManagedThreadId} has released the semaphore. The current count is {Semaphore.CurrentCount}");
             }
             
 
