@@ -24,8 +24,6 @@ namespace ApiUsageChallenge
             _cache= cache;
         }
 
-       
-
         public  async Task<Person?> GetPersonByIdAsync(int id, RestClient client)
         {
             try
@@ -37,29 +35,23 @@ namespace ApiUsageChallenge
                 Person? ChachedPerson = _cache.Get<Person?>(id);
                 if (ChachedPerson is null)
                 {
-                    
-                    var request = new RestRequest("people/" + id, Method.Get);
+                 var request = new RestRequest("people/" + id, Method.Get);
 
                     RestResponse response = await client.GetAsync(request);
                     if (!string.IsNullOrEmpty(response.Content) && !response.Content.Contains("Not found"))
                     {
-
                         return ConvertToObject(response.Content, id);
                     }
                     else
                     {
                         Console.WriteLine($"person with id: {id} does not exist\n");
                         return null;
-
                     }
                 }
                 else
                 {
                     return ChachedPerson;
                 }
-
-               
-
             }
             catch (IOException e)
             {
@@ -76,10 +68,6 @@ namespace ApiUsageChallenge
                 SimpleLogger.Log(e);
                 throw;
             }
-
-
-
-
         }
 
         // First the json string is converted to a person object and 
@@ -95,10 +83,8 @@ namespace ApiUsageChallenge
                     _cache.Set(id, PersonObject, TimeSpan.FromMinutes(1));
 
                     return PersonObject;
-
                 }
                 return null;
-
             }
             catch (ArgumentException e)
             {
@@ -115,7 +101,6 @@ namespace ApiUsageChallenge
                 SimpleLogger.Log(e);
                 throw;
             }
-
         }
     }
 }

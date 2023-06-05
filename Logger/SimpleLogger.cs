@@ -11,10 +11,8 @@ namespace Logger
     /// </summary>
     public static class SimpleLogger
     {
-
         public static async void Log(Exception e)
         {
-
             try
             {
                 string workingDirectory = Environment.CurrentDirectory;
@@ -26,16 +24,7 @@ namespace Logger
                 sb.Append("Message: " + e.Message + "\n");
                 sb.Append("StackTrace: " + e.StackTrace + "\n");
 
-
-                if (File.Exists(projectDirectory + "/log.txt"))
-                {
-                    await File.AppendAllTextAsync(projectDirectory + "/log.txt", sb.ToString());
-                }
-                else
-                {
-                    
-                    await File.AppendAllTextAsync(projectDirectory + "/log.txt", sb.ToString());
-                }
+                await File.AppendAllTextAsync(projectDirectory + "/log.txt", sb.ToString());
             }
             catch (Exception ex)
             {
@@ -43,7 +32,6 @@ namespace Logger
                 Console.WriteLine(ex.StackTrace);
                 throw;
             }
-  
         }
 
         public static async void Log(string text)
@@ -57,18 +45,7 @@ namespace Logger
                 sb.Append("Time: " + DateTime.Now + "\n");
                 sb.Append("Text: " + text + "\n");
 
-
-
-                if (File.Exists(projectDirectory + "/log.txt"))
-                {
-                    await File.AppendAllTextAsync(projectDirectory + "/log.txt", sb.ToString());
-                }
-                else
-                {
-                    File.Create(projectDirectory + "/log.txt");
-                    await File.AppendAllTextAsync(projectDirectory + "/log.txt", sb.ToString());
-                }
-
+                await File.AppendAllTextAsync(projectDirectory + "/log.txt", sb.ToString());
             }
             catch (Exception e)
             {
@@ -76,10 +53,6 @@ namespace Logger
                 Console.WriteLine(e.StackTrace);
                 throw;
             }
-
-
         }
-
-
     }
 }

@@ -9,7 +9,6 @@ namespace ApiUsageChallenge
 {
     internal class Program
     {
-
         static void Main(string[] args)
         {
             // Adds MemoryCache to the list of services
@@ -30,50 +29,44 @@ namespace ApiUsageChallenge
                 if(res.Result != null)
                 {
                 Print(res.Result);
-
                 }
 
                 Task<Person?> res2 = ApiDataRetriver.GetPersonByIdAsync(2, client);
+               
                 if (res2.Result != null)
                 {
                     Print(res2.Result);
-
                 }
                 Task<Person?> res3 = ApiDataRetriver.GetPersonByIdAsync(1, client);
+               
                 if (res3.Result != null)
                 {
                     Print(res3.Result);
-
                 }
                 Task<Person?> res4 = ApiDataRetriver.GetPersonByIdAsync(2, client);
+               
                 if (res4.Result != null)
                 {
                     Print(res4.Result);
-
                 }
 
                 Task<Person?> res5 = ApiDataRetriver.GetPersonByIdAsync(99, client);
                 if (res5.Result != null)
                 {
                     Print(res5.Result);
-
                 }
 
                 Task<Person?> res6 = ApiDataRetriver.GetPersonByIdAsync(9, client);
                 if (res6.Result != null)
                 {
                     Print(res6.Result);
-
                 }
 
                 Task<Person?> res7 = ApiDataRetriver.GetPersonByIdAsync(40, client);
                 if (res7.Result != null)
                 {
                     Print(res7.Result);
-
                 }
-              
-
             }
             catch (InvalidOperationException e)
             {
@@ -90,7 +83,6 @@ namespace ApiUsageChallenge
                 SimpleLogger.Log(e);
                 throw;
             }
-
         }
         /// <summary>
         /// printing function.
@@ -134,7 +126,6 @@ namespace ApiUsageChallenge
                 SimpleLogger.Log(e);
                 throw;
             }
-          
         }
     }
 }

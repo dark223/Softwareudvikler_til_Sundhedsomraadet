@@ -28,7 +28,6 @@ namespace PalindromeChallenge
                 // which then can be removed.
                 Regex rx = new Regex(@"\W", RegexOptions.IgnoreCase);
 
-                
                 // Finds all special characters
                 // and then removes them
                 MatchCollection matches = rx.Matches(text);
@@ -39,9 +38,7 @@ namespace PalindromeChallenge
                 }
                 foreach (Match match in matches)
                 {
-
                     filteredtext = filteredtext.Replace(match.ToString(), "");
-
                 }
 
                 // Makes all text lowercase and then makes a chararray based on filteredtext to make use of the Array's reverse method
@@ -50,8 +47,6 @@ namespace PalindromeChallenge
                 char[] filteredtextArray = filteredtext.ToCharArray();
                 Array.Reverse(filteredtextArray);
                 string reversefilteredtext = new string(filteredtextArray);
-
-
 
                 // if they are the same then it returns true else false
                 if (filteredtext == reversefilteredtext)
@@ -62,7 +57,6 @@ namespace PalindromeChallenge
                 {
                     return false;
                 }
-
             }
             catch (RankException e)
             {
@@ -78,23 +72,18 @@ namespace PalindromeChallenge
             {
                 SimpleLogger.Log(e);
                 throw;
-
             }
             catch (ArgumentException e)
             {
                 SimpleLogger.Log(e);
                 throw;
-
             }
             catch (Exception e)
             {
                 SimpleLogger.Log(e);
                 throw;
             }
-          
-
         }
-
 
         public static bool IsPalindrome(int number)
         {
@@ -102,7 +91,6 @@ namespace PalindromeChallenge
             {
                 // converts int to string
                 string text = number.ToString();
-
 
                 // Makes all text lowercase and then makes a chararray based on text to make use of the Array's reverse method
                 // then casts it to string which later can be compared with text
@@ -134,12 +122,9 @@ namespace PalindromeChallenge
             catch (Exception e)
             {
                 SimpleLogger.Log(e);
-
                 throw;
             }
-
         }
-    }
-        
+    }    
 }
 

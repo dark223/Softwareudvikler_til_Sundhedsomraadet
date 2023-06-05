@@ -15,7 +15,6 @@ namespace ThreadingChallenge
     /// </summary>
     internal class Program
     {
-
         private static SemaphoreSlim Semaphore;
         public static void Main()
         {
@@ -25,7 +24,6 @@ namespace ThreadingChallenge
                                                             "item 19", "item 20" };
             try
             {
-                
                 // Creates the semaphore and starts with 3 open spots for threads to enter.
                 // it has a maximum of 3 spots.
                 Semaphore = new SemaphoreSlim(3, 3);
@@ -45,9 +43,6 @@ namespace ThreadingChallenge
                 // ends the program delcaring that all tasks have completed their job
                 Task.WaitAll(tasks.ToArray());
                 Console.WriteLine("all tasks have completed");
-
-
-
             }
             catch (AggregateException e)
             {
@@ -89,14 +84,12 @@ namespace ThreadingChallenge
                 SimpleLogger.Log(e);
                 throw;
             }
-
         }
 
 
 
         static void Worker(string item)
         {
-
             // blocks current thread from entering semaphore until another thread has released it
             Semaphore.Wait();
             try
@@ -108,7 +101,6 @@ namespace ThreadingChallenge
                 Console.WriteLine(item + $" processing time was: {ProcessingTime} and thread id was: {Thread.CurrentThread.ManagedThreadId}");
  
                 Thread.Sleep(ProcessingTime);
-
             }
             catch (IOException e)
             {
@@ -129,7 +121,6 @@ namespace ThreadingChallenge
             {
                 SimpleLogger.Log(e);
                 throw;
-
             }
             finally
             {
@@ -137,9 +128,6 @@ namespace ThreadingChallenge
                 Semaphore.Release();
                 Console.WriteLine($"thread with id {Thread.CurrentThread.ManagedThreadId} has released the semaphore. The current count is {Semaphore.CurrentCount}");
             }
-            
-
         }
-        
     }
 }
