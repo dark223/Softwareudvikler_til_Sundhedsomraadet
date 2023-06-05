@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace ApiUsageChallenge
 {
-    
-   
     public class Person
     {
         [JsonConstructor]
@@ -80,8 +78,5 @@ namespace ApiUsageChallenge
 
         [JsonProperty("url")]
         public string? Url { get; set; }
-       
     }
-
-
 }

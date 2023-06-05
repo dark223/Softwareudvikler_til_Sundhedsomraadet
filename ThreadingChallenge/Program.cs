@@ -86,8 +86,6 @@ namespace ThreadingChallenge
             }
         }
 
-
-
         static void Worker(string item)
         {
             // blocks current thread from entering semaphore until another thread has released it

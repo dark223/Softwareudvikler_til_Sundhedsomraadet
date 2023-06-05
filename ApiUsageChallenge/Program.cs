@@ -16,7 +16,6 @@ namespace ApiUsageChallenge
     .ConfigureServices(services => services.AddMemoryCache())
     .Build();
 
-           
             try
             {
                 RestClient client = new RestClient("https://swapi.dev/api/");
