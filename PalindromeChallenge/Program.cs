@@ -5,7 +5,6 @@ namespace PalindromeChallenge
     {
         static void Main(string[] args)
         {
-            
             Console.WriteLine("string palindrome");
             Console.WriteLine("h.un d: " +PalindromeTester.IsPalindrome("h.un d"));
             Console.WriteLine("ot.to: " + PalindromeTester.IsPalindrome("ot.to"));
@@ -17,9 +16,6 @@ namespace PalindromeChallenge
             Console.WriteLine("111: " + PalindromeTester.IsPalindrome(111));
             Console.WriteLine("1111: " + PalindromeTester.IsPalindrome(1111));
             Console.WriteLine("1121: " + PalindromeTester.IsPalindrome(1121));
-
         }
-        
     }
-
 }
