@@ -21,3 +21,6 @@ Krav til kompetencer:
 ● Erfaring eller interesse for softwarearkitektur
 
 ● Gerne erfaring eller kendskab til: JavaScript, HTML5, MVC og RAZOR
+
+
+Se Code test RN marts 2023.pdf for at se selve opgaven
